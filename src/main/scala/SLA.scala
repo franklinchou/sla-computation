@@ -7,7 +7,7 @@ import util.Comparable._
 case class SLA(description: String,
                allocationPercentage: BigDecimal,
                serviceLevelTarget: BigDecimal,
-               evaluationCriteria: (ScalaNumber, ScalaNumber) => Boolean,
+               evaluationCriteria: (BigDecimal, BigDecimal) => Boolean,
                measurementWindow: Duration,
                effectiveDate: LocalDate,
                observationDate: LocalDate,

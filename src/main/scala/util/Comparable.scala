@@ -1,18 +1,16 @@
 package util
 
-import scala.math.ScalaNumber
-
 object Comparable {
 
-  val GreaterThan: (ScalaNumber, ScalaNumber) => Boolean =
-    (a, b) => a.asInstanceOf[BigDecimal] > b.asInstanceOf[BigDecimal]
+  val GreaterThan: (BigDecimal, BigDecimal) => Boolean =
+    (a, b) => a > b
 
-  val GreaterThanEqualTo: (ScalaNumber, ScalaNumber) => Boolean =
-    (a, b) => a.asInstanceOf[BigDecimal] >= b.asInstanceOf[BigDecimal]
+  val GreaterThanEqualTo: (BigDecimal, BigDecimal) => Boolean =
+    (a, b) => a >= b
 
-  val LessThan: (ScalaNumber, ScalaNumber) => Boolean =
-    (a, b) => a.asInstanceOf[BigDecimal] < b.asInstanceOf[BigDecimal]
+  val LessThan: (BigDecimal, BigDecimal) => Boolean =
+    (a, b) => a < b
 
-  val LessThanEqualTo: (ScalaNumber, ScalaNumber) => Boolean =
-    (a, b) => a.asInstanceOf[BigDecimal] <= b.asInstanceOf[BigDecimal]
+  val LessThanEqualTo: (BigDecimal, BigDecimal) => Boolean =
+    (a, b) => a <= b
 }
