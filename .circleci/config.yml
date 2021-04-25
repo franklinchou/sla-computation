@@ -10,7 +10,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - c-{{ checksum "build.sbt" }}
+            - c-{{ checksum "build.sbt" }}-{{ checksum ".bsp/sbt.json" }}
             - c-
       - run:
           name: run-scala-tests
@@ -18,7 +18,7 @@ jobs:
             sbt compile
             sbt test
       - save_cache:
-          key: -c-{{ checksum "build.sbt" }}
+          key: -c-{{ checksum "build.sbt" }}-{{ checksum ".bsp/sbt.json" }}
           paths:
             - project
             - target
