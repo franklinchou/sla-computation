@@ -7,4 +7,12 @@ object Comparable {
   val GreaterThan: (ScalaNumber, ScalaNumber) => Boolean =
     (a, b) => a.asInstanceOf[BigDecimal] > b.asInstanceOf[BigDecimal]
 
+  val GreaterThanEqualTo: (ScalaNumber, ScalaNumber) => Boolean =
+    (a, b) => a.asInstanceOf[BigDecimal] >= b.asInstanceOf[BigDecimal]
+
+  val LessThan: (ScalaNumber, ScalaNumber) => Boolean =
+    (a, b) => a.asInstanceOf[BigDecimal] < b.asInstanceOf[BigDecimal]
+
+  val LessThanEqualTo: (ScalaNumber, ScalaNumber) => Boolean =
+    (a, b) => a.asInstanceOf[BigDecimal] <= b.asInstanceOf[BigDecimal]
 }
