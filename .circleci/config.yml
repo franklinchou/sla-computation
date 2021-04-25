@@ -5,6 +5,7 @@ jobs:
       - image: hseeberger/scala-sbt:16_1.5.0_2.12.13
     environment:
         SBT_VERSION: 1.5.0
+    working_directory: ~/sla-computation
     steps:
       - checkout
       - restore_cache:
