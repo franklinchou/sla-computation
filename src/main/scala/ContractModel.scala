@@ -24,3 +24,4 @@ case class ContractModel(name: String,
   val atRiskAmount: BigDecimal = totalContractValue * atRiskRatio
 
 }
+

@@ -47,7 +47,6 @@ class ContractModelSLA extends AnyFunSpec {
     it("should properly map service levels to credits") {
       assert(c1.serviceLevelCreditTotal == BigDecimal(3900))
     }
-
   }
 
 }
