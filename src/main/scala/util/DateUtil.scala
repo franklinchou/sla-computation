@@ -13,7 +13,9 @@ object DateUtil {
         ptr = ptr.plusDays(1)
       }
       Period.ofDays(i)
-    } else {
+    } else if (a.isEqual(b)) {
+      Period.ofDays(1)
+    }else {
       Period.ZERO
     }
   }
