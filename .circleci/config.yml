@@ -15,8 +15,8 @@ jobs:
       - run:
           name: run-scala-tests
           command: |
-            - sbt compile
-            - sbt test
+            sbt compile
+            sbt test
       - save_cache:
           key: -c-{{ checksum "build.sbt" }}
           paths:
