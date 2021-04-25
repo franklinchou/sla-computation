@@ -1,17 +1,17 @@
 import util.DateUtil
 
 import java.time.{Duration, LocalDate}
-import scala.math.ScalaNumber
 import util.Comparable._
 
-case class SLA(description: String,
-               allocationPercentage: BigDecimal,
-               serviceLevelTarget: BigDecimal,
-               evaluationCriteria: (BigDecimal, BigDecimal) => Boolean,
-               measurementWindow: Duration,
-               effectiveDate: LocalDate,
-               observationDate: LocalDate,
-               observations: Seq[SLAObservation] = Seq.empty[SLAObservation]) {
+case class SLAModel(description: String,
+                    slaType: SLAType,
+                    allocationPercentage: BigDecimal,
+                    serviceLevelTarget: BigDecimal,
+                    evaluationCriteria: (BigDecimal, BigDecimal) => Boolean,
+                    measurementWindow: Duration,
+                    effectiveDate: LocalDate,
+                    observationDate: LocalDate,
+                    observations: Seq[SLAObservationModel] = Seq.empty[SLAObservationModel]) {
 
   private val endOfMeasurementWindow: LocalDate =
     effectiveDate.plusDays(measurementWindow.toDays)
@@ -25,7 +25,7 @@ case class SLA(description: String,
   // Get only the observations applicable to the measurement window
   // If there are multiple observations for a date get the least favorable observation (the max value if the goal is
   // to minimize, the min value if the goal is to maximize)
-  private val relevantObservations: Seq[SLAObservation] =
+  private val relevantObservations: Seq[SLAObservationModel] =
     evaluationCriteria match {
       case x if x.equals(GreaterThan) || x.equals(GreaterThanEqualTo) =>
         measurementsInWindow.groupBy(_.observationDate).map(o => o._2.minBy(_.serviceLevelObserved)).toSeq
@@ -57,4 +57,11 @@ case class SLA(description: String,
     evaluationCriteria(serviceLevelInMeasurementWindow, serviceLevelTarget)
 
   val isFailing: Boolean = !isPassing
+
+  // Credits only applicable to CPIs
+  val isCreditable: Boolean = slaType match {
+    case CPI => true
+    case _ => false
+  }
+
 }
