@@ -30,14 +30,11 @@ class ContractModelSLA extends AnyFunSpec {
       )
 
     val lru1 =
-      LRUModel("LRU 1",
-        serviceLevelAgreements = Set(sla1),
-        allocationPercentage = BigDecimal(.1)
-      )
+      LRUModel("LRU 1", serviceLevelAgreements = List(sla1), allocationPercentage = BigDecimal(.1))
 
     val c1 =
       ContractModel("Test contract 1",
-        logicalResourceUnits = Set(lru1)
+        logicalResourceUnits = List(lru1)
       )
 
     it("should compute the total at risk amount") {
