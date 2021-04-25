@@ -1,0 +1,23 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: hseeberger/scala-sbt:16_1.5.0_2.12.13
+    environment:
+        SBT_VERSION: 1.5.0
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - c-{{ checksum "build.sbt" }}
+            - c-
+      - run:
+          name: run-scala-tests
+          command: |
+            - sbt compile
+            - sbt test
+      - save_cache:
+          key: -c-{{ checksum "build.sbt" }}
+          paths:
+            - project
+            - target
